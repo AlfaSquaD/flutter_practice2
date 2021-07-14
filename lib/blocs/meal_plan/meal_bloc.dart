@@ -9,13 +9,16 @@ part 'meal_event.dart';
 part 'meal_state.dart';
 
 class MealBloc extends Bloc<MealEvent, MealState> {
-  MealBloc(this.meal) : super(MealChangedState(meal));
+  MealBloc(this.meal) : super(MealInitState(meal));
   final Meal meal;
   @override
   Stream<MealState> mapEventToState(MealEvent event) async* {
-    if (event is MealAddFoodEvent)
+    if (event is MealAddFoodEvent) {
       meal.foods.add(event.foodData);
-    else if (event is MealRemoveFoodEvent) meal.foods.removeAt(event.index);
-    yield MealChangedState(meal);
+      yield MealAddFoodState(this.meal.foods.length - 1);
+    } else if (event is MealRemoveFoodEvent) {
+      FoodData data = meal.foods.removeAt(event.index);
+      yield MealRemoveFoodState(event.index, data);
+    }
   }
 }
