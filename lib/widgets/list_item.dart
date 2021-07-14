@@ -23,6 +23,7 @@ class CustomListItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: InkWell(
+        borderRadius: BorderRadius.circular(20),
         onTap: onTap,
         child: Container(
           constraints: constraints,
@@ -31,7 +32,8 @@ class CustomListItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Expanded(flex: 1, child: leading ?? Container()),
                 Expanded(

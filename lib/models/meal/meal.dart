@@ -51,6 +51,23 @@ class Meal extends HiveObject with EquatableMixin {
   Nutrition totalProtein = new Nutrition(type: NutritionType.protein, value: 0);
   Meal(this.meal);
 
+  void addFood(FoodData foodData) {
+    foods.add(foodData);
+    totalKcal += foodData.food.kilocalories;
+    totalFat.value = totalFat + foodData.food.totalFat;
+    totalSugar.value = totalSugar + foodData.food.totalSugar;
+    totalProtein.value = totalProtein + foodData.food.totalProtein;
+  }
+
+  FoodData removeFood(int index) {
+    FoodData foodData = foods.removeAt(index);
+    totalKcal -= foodData.food.kilocalories;
+    totalFat.value = totalFat - foodData.food.totalFat;
+    totalSugar.value = totalSugar - foodData.food.totalSugar;
+    totalProtein.value = totalProtein - foodData.food.totalProtein;
+    return foodData;
+  }
+
   @override
   List<Object?> get props => [this.meal, this.foods];
 }

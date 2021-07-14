@@ -1,6 +1,9 @@
 import 'package:flutter_practice2/models/meal/meal.dart';
 import 'package:flutter_practice2/models/model_id.dart';
+import 'package:flutter_practice2/models/nutrition/nutrition.dart';
 import 'package:hive/hive.dart';
+
+part 'daily_plan.g.dart';
 
 @HiveType(typeId: DayOfWeekId)
 enum DayOfWeek {
@@ -46,6 +49,12 @@ class DailyPlan extends HiveObject {
   @HiveField(1)
   List<Meal> meals = List.generate(5, (index) => Meal(MealType.values[index]),
       growable: false);
+  @HiveField(2)
+  Nutrition totalFat = new Nutrition(type: NutritionType.fat, value: 0);
+  @HiveField(3)
+  Nutrition totalSugar = new Nutrition(type: NutritionType.sugar, value: 0);
+  @HiveField(4)
+  Nutrition totalProtein = new Nutrition(type: NutritionType.protein, value: 0);
 
   DailyPlan({required this.day});
 }

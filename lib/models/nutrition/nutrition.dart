@@ -24,7 +24,10 @@ class Nutrition extends HiveObject with EquatableMixin {
 
   @override
   List<Object?> get props => [type, value];
-  // Hive fields go here
+
+  double operator +(other) => this.value + other.value;
+
+  double operator -(other) => this.value - other.value;
 }
 
 String nutritionTypeToString(NutritionType type) {

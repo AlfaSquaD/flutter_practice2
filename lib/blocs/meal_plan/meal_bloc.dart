@@ -14,10 +14,10 @@ class MealBloc extends Bloc<MealEvent, MealState> {
   @override
   Stream<MealState> mapEventToState(MealEvent event) async* {
     if (event is MealAddFoodEvent) {
-      meal.foods.add(event.foodData);
+      meal.addFood(event.foodData);
       yield MealAddFoodState(this.meal.foods.length - 1);
     } else if (event is MealRemoveFoodEvent) {
-      FoodData data = meal.foods.removeAt(event.index);
+      FoodData data = meal.removeFood(event.index);
       yield MealRemoveFoodState(event.index, data);
     }
   }
