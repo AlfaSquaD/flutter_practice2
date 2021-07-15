@@ -8,6 +8,7 @@ import 'package:flutter_practice2/models/nutrition/nutrition.dart';
 import 'package:flutter_practice2/pages/food_search/food_search_page.dart';
 import 'package:flutter_practice2/repo/food_repo.dart';
 import 'package:flutter_practice2/utils/page_route.dart';
+import 'package:flutter_practice2/widgets/circular_chart.dart';
 import 'package:flutter_practice2/widgets/list_item.dart';
 import 'package:flutter_practice2/widgets/page_template.dart';
 import 'package:flutter_practice2/widgets/top_bar.dart';
@@ -193,28 +194,13 @@ class MealDetailPage extends StatelessWidget {
         ),
         body: Column(
           children: [
-            SfCircularChart(
-                title: ChartTitle(text: "İçerikler"),
-                legend: Legend(
-                    isVisible: true,
-                    alignment: ChartAlignment.center,
-                    offset: Offset.zero),
-                series: <PieSeries<Nutrition, String>>[
-                  PieSeries<Nutrition, String>(
-                      enableSmartLabels: true,
-                      explode: false,
-                      dataSource: getNutritionList(meal),
-                      xValueMapper: (Nutrition data, _) =>
-                          nutritionTypeToString(data.type),
-                      yValueMapper: (Nutrition data, _) => data.value,
-                      dataLabelMapper: (Nutrition data, _) =>
-                          "${data.value} gr",
-                      animationDuration: 700, //ms
-                      dataLabelSettings: DataLabelSettings(
-                        isVisible: true,
-                        labelPosition: ChartDataLabelPosition.outside,
-                      )),
-                ]),
+            CircularChart<Nutrition>(
+                dataSource: getNutritionList(meal),
+                xMapper: (Nutrition data, _) =>
+                    nutritionTypeToString(data.type),
+                dataLabelMapper: (Nutrition data, _) => "${data.value} gr",
+                yMapper: (Nutrition data, _) => data.value,
+                chartTitle: "İçerikler")
           ],
         ),
       ),

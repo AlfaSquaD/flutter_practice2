@@ -5,6 +5,7 @@ import 'package:flutter_practice2/models/food/food.dart';
 import 'package:flutter_practice2/models/food_data/food_data.dart';
 import 'package:flutter_practice2/models/nutrition/nutrition.dart';
 import 'package:flutter_practice2/utils/page_route.dart';
+import 'package:flutter_practice2/widgets/circular_chart.dart';
 import 'package:flutter_practice2/widgets/list_item.dart';
 import 'package:flutter_practice2/widgets/page_template.dart';
 import 'package:flutter_practice2/widgets/search_field.dart';
@@ -123,25 +124,13 @@ class _ItemDescription extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SfCircularChart(
-                    title: ChartTitle(text: "İçerikler"),
-                    legend: Legend(
-                        isVisible: true,
-                        alignment: ChartAlignment.center,
-                        offset: Offset.zero),
-                    series: <PieSeries<Nutrition, String>>[
-                      PieSeries<Nutrition, String>(
-                          enableSmartLabels: true,
-                          explode: false,
-                          dataSource: getNutritionList(food),
-                          xValueMapper: (Nutrition data, _) =>
-                              nutritionTypeToString(data.type),
-                          yValueMapper: (Nutrition data, _) => data.value,
-                          dataLabelMapper: (Nutrition data, _) =>
-                              nutritionTypeToString(data.type),
-                          dataLabelSettings:
-                              DataLabelSettings(isVisible: true)),
-                    ]),
+                CircularChart<Nutrition>(
+                    dataSource: getNutritionList(food),
+                    xMapper: (Nutrition data, _) =>
+                        nutritionTypeToString(data.type),
+                    dataLabelMapper: (Nutrition data, _) => "${data.value} gr",
+                    yMapper: (Nutrition data, _) => data.value,
+                    chartTitle: "İçerikler"),
                 AddFoodWidget(food: food)
               ]),
         ),
