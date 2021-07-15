@@ -180,8 +180,14 @@ class MealDetailPage extends StatelessWidget {
               child: Text(
                 "Detaylar",
                 style: Theme.of(context).primaryTextTheme.caption,
-                textScaleFactor: 1.5,
+                textScaleFactor: 2,
               ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text("${meal.totalKcal.toString()} Kilokalori",
+                  style: Theme.of(context).primaryTextTheme.caption,
+                  textScaleFactor: 1.5),
             )
           ],
         ),
@@ -202,8 +208,12 @@ class MealDetailPage extends StatelessWidget {
                           nutritionTypeToString(data.type),
                       yValueMapper: (Nutrition data, _) => data.value,
                       dataLabelMapper: (Nutrition data, _) =>
-                          nutritionTypeToString(data.type),
-                      dataLabelSettings: DataLabelSettings(isVisible: true)),
+                          "${data.value} gr",
+                      animationDuration: 700, //ms
+                      dataLabelSettings: DataLabelSettings(
+                        isVisible: true,
+                        labelPosition: ChartDataLabelPosition.outside,
+                      )),
                 ]),
           ],
         ),
