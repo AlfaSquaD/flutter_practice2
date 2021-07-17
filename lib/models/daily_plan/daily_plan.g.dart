@@ -86,13 +86,15 @@ class DailyPlanAdapter extends TypeAdapter<DailyPlan> {
       ..meals = (fields[1] as List).cast<Meal>()
       ..totalFat = fields[2] as Nutrition
       ..totalSugar = fields[3] as Nutrition
-      ..totalProtein = fields[4] as Nutrition;
+      ..totalProtein = fields[4] as Nutrition
+      ..totalWaterOfGlass = fields[5] as Nutrition
+      ..totalKcal = fields[6] as double;
   }
 
   @override
   void write(BinaryWriter writer, DailyPlan obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.day)
       ..writeByte(1)
@@ -102,7 +104,11 @@ class DailyPlanAdapter extends TypeAdapter<DailyPlan> {
       ..writeByte(3)
       ..write(obj.totalSugar)
       ..writeByte(4)
-      ..write(obj.totalProtein);
+      ..write(obj.totalProtein)
+      ..writeByte(5)
+      ..write(obj.totalWaterOfGlass)
+      ..writeByte(6)
+      ..write(obj.totalKcal);
   }
 
   @override

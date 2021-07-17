@@ -10,3 +10,5 @@ const int UserId = 8;
 const int NutritionistId = 9;
 const int NutritionId = 10;
 const int NutritionTypeId = 11;
+const int UserDataId = 12;
+const int DailyTakenId = 13;

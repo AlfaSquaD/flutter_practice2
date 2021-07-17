@@ -20,24 +20,30 @@ class CircularChart<T> extends StatelessWidget {
   final StringMapper<T> dataLabelMapper;
   @override
   Widget build(BuildContext context) {
-    return SfCircularChart(
-        title: ChartTitle(text: chartTitle),
-        legend: Legend(
-            isVisible: true,
-            alignment: ChartAlignment.center,
-            offset: Offset.zero),
-        series: <PieSeries<T, String>>[
-          PieSeries<T, String>(
-              animationDuration: 750,
-              enableSmartLabels: true,
-              explode: false,
-              dataSource: dataSource,
-              xValueMapper: xMapper,
-              yValueMapper: yMapper,
-              dataLabelMapper: dataLabelMapper,
-              dataLabelSettings: DataLabelSettings(
-                  isVisible: true,
-                  labelPosition: ChartDataLabelPosition.outside)),
-        ]);
+    return Container(
+      height: 300,
+      child: SfCircularChart(
+          title: ChartTitle(text: chartTitle),
+          legend: Legend(
+              isVisible: true,
+              position: LegendPosition.bottom,
+              alignment: ChartAlignment.center,
+              offset: Offset(0, 10)),
+          series: <PieSeries<T, String>>[
+            PieSeries<T, String>(
+                animationDuration: 750,
+                enableSmartLabels: true,
+                explode: false,
+                dataSource: dataSource,
+                xValueMapper: xMapper,
+                yValueMapper: yMapper,
+                dataLabelMapper: dataLabelMapper,
+                dataLabelSettings: DataLabelSettings(
+                    isVisible: true,
+                    showZeroValue: false,
+                    alignment: ChartAlignment.center,
+                    labelPosition: ChartDataLabelPosition.outside)),
+          ]),
+    );
   }
 }

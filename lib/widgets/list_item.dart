@@ -58,23 +58,26 @@ class _ItemDescription extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 4.0),
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Expanded(
-              flex: 1,
-              child: Text(
-                title ?? "",
-                maxLines: 1,
-                textScaleFactor: 1.2,
+            if (title != null)
+              Expanded(
+                flex: 1,
+                child: Text(
+                  title ?? "",
+                  maxLines: 1,
+                  textScaleFactor: 1.2,
+                ),
               ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Text(
-                subtitle ?? "",
-                maxLines: 1,
-                textScaleFactor: 0.9,
+            if (subtitle != null)
+              Expanded(
+                flex: 1,
+                child: Text(
+                  subtitle ?? "",
+                  maxLines: 1,
+                  textScaleFactor: 0.9,
+                ),
               ),
-            ),
           ]),
     );
   }

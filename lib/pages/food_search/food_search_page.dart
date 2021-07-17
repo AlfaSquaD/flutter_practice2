@@ -158,6 +158,7 @@ class _AddFoodWidgetState extends State<AddFoodWidget> {
   final TextEditingController _mealAmountController =
       TextEditingController(text: "1");
   MealMeasure selected = MealMeasure.portion;
+  bool _validateMealAmount = false;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -186,7 +187,9 @@ class _AddFoodWidgetState extends State<AddFoodWidget> {
               controller: _mealAmountController,
               cursorColor: Colors.blueGrey,
               keyboardType: TextInputType.number,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
+                errorText:
+                    _validateMealAmount ? "Geçerli bir sayı giriniz!" : null,
                 labelText: "Miktar",
               )),
         ),
@@ -197,12 +200,16 @@ class _AddFoodWidgetState extends State<AddFoodWidget> {
             child: Text("Ekle",
                 style: const TextStyle(fontSize: 20, color: Colors.white)),
             onPressed: () {
-              Navigator.pop(
-                  context,
-                  FoodData(
-                      food: widget.food,
-                      amount: double.parse(_mealAmountController.text),
-                      mealMeasure: selected));
+              double amount = double.parse(_mealAmountController.text);
+              if (amount == null || amount <= 0)
+                _validateMealAmount = true;
+              else
+                Navigator.pop(
+                    context,
+                    FoodData(
+                        food: widget.food,
+                        amount: double.parse(_mealAmountController.text),
+                        mealMeasure: selected));
             },
           ),
         )

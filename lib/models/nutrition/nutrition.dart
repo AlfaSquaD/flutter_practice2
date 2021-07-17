@@ -12,6 +12,8 @@ enum NutritionType {
   fat,
   @HiveField(2)
   sugar,
+  @HiveField(3)
+  water
 }
 
 @HiveType(typeId: NutritionId)
@@ -38,5 +40,7 @@ String nutritionTypeToString(NutritionType type) {
       return 'Yağ';
     case NutritionType.sugar:
       return 'Şeker';
+    case NutritionType.water:
+      return 'Su';
   }
 }

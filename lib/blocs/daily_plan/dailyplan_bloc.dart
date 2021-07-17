@@ -12,6 +12,7 @@ class DailyplanBloc extends Bloc<DailyplanEvent, DailyplanState> {
   final DailyPlan plan;
   @override
   Stream<DailyplanState> mapEventToState(DailyplanEvent event) async* {
+    plan.updateTotals();
     yield DailyplanChangeState(plan: plan);
   }
 }
