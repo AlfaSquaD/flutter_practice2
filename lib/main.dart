@@ -4,14 +4,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_practice2/blocs/daily_plan/dailyplan_bloc.dart';
-import 'package:flutter_practice2/blocs/weekly_plan/weekly_plan_bloc.dart';
 import 'package:flutter_practice2/models/daily_plan/daily_plan.dart';
 import 'package:flutter_practice2/models/food/food.dart';
 import 'package:flutter_practice2/models/nutrition/nutrition.dart';
-import 'package:flutter_practice2/models/user_data/user_data.dart';
-import 'package:flutter_practice2/pages/daily_plan/daily_plan_page.dart';
-import 'package:flutter_practice2/pages/weekly_plan/weekly_plan_page.dart';
+import 'package:flutter_practice2/pages/user_main_page_t/user_main_page_test.dart';
 import 'package:flutter_practice2/repo/food_repo.dart';
 import 'package:flutter_practice2/repo/user_repo.dart';
 import 'package:flutter_practice2/static.dart';
@@ -41,7 +37,6 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   DailyPlan plan = new DailyPlan(day: DayOfWeek.saturday);
   @override
   Widget build(BuildContext context) {
@@ -52,16 +47,7 @@ class MyApp extends StatelessWidget {
           create: (context) => new UserRepositoryTest(),
         )
       ],
-      child: MaterialApp(
-          theme: normalTheme,
-          home: BlocProvider<WeeklyPlanBloc>(
-            create: (context) {
-              UserData data = RepositoryProvider.of<UserRepositoryTest>(context)
-                  .getUserData("a");
-              return WeeklyPlanBloc(data.dailyPlans);
-            },
-            child: WeeklyPlanPage(),
-          )),
+      child: MaterialApp(theme: normalTheme, home: UserMainPageTest()),
     );
   }
 }

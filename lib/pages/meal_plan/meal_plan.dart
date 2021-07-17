@@ -12,7 +12,6 @@ import 'package:flutter_practice2/widgets/circular_chart.dart';
 import 'package:flutter_practice2/widgets/list_item.dart';
 import 'package:flutter_practice2/widgets/page_template.dart';
 import 'package:flutter_practice2/widgets/top_bar.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 
 class MealPage extends StatelessWidget {
   MealPage({Key? key}) : super(key: key);
