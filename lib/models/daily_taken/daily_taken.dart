@@ -1,3 +1,4 @@
+import 'package:flutter_practice2/models/food_data/food_data.dart';
 import 'package:flutter_practice2/models/model_id.dart';
 import 'package:flutter_practice2/models/nutrition/nutrition.dart';
 import 'package:hive/hive.dart';
@@ -18,6 +19,32 @@ class DailyTaken extends HiveObject {
   Nutrition takenWater = new Nutrition(type: NutritionType.water, value: 0);
   @HiveField(5)
   double takenKcal = 0;
+  @HiveField(6)
+  List<FoodData> foodDatas = [];
 
   DailyTaken(this.date);
+
+  void addFoodData(FoodData foodData) {
+    this.foodDatas.add(foodData);
+    takenFat.value = takenFat +
+        foodData.food.totalFat * (foodData.amount / foodData.food.grams);
+    takenProtein.value = takenProtein +
+        foodData.food.totalProtein * (foodData.amount / foodData.food.grams);
+    takenSugar.value = takenSugar +
+        foodData.food.totalSugar * (foodData.amount / foodData.food.grams);
+    takenKcal = takenKcal +
+        foodData.food.kilocalories * (foodData.amount / foodData.food.grams);
+  }
+
+  void removeFoodData(FoodData foodData) {
+    this.foodDatas.remove(foodData);
+    takenFat.value = takenFat -
+        foodData.food.totalFat * (foodData.amount / foodData.food.grams);
+    takenProtein.value = takenProtein -
+        foodData.food.totalProtein * (foodData.amount / foodData.food.grams);
+    takenSugar.value = takenSugar -
+        foodData.food.totalSugar * (foodData.amount / foodData.food.grams);
+    takenKcal = takenKcal -
+        foodData.food.kilocalories * (foodData.amount / foodData.food.grams);
+  }
 }

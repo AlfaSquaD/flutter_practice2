@@ -11,6 +11,7 @@ import 'package:flutter_practice2/pages/user_main_page_t/user_main_page_test.dar
 import 'package:flutter_practice2/repo/food_repo.dart';
 import 'package:flutter_practice2/repo/user_repo.dart';
 import 'package:flutter_practice2/static.dart';
+import 'package:flutter_practice2/utils/date.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,6 +23,7 @@ void main() async {
   Hive.registerAdapter(NutritionAdapter());
   Hive.registerAdapter(FoodAdapter());
   Hive.init(dir.path);
+  Date.init();
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   bool _firstInit = sharedPreferences.getBool("firstInit") ?? true;
   if (_firstInit) {

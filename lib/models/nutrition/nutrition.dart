@@ -30,6 +30,10 @@ class Nutrition extends HiveObject with EquatableMixin {
   double operator +(other) => this.value + other.value;
 
   double operator -(other) => this.value - other.value;
+
+  double operator *(other) => this.value * other.value;
+
+  double operator /(other) => this.value / other.value;
 }
 
 String nutritionTypeToString(NutritionType type) {

@@ -38,7 +38,7 @@ class Food extends HiveObject with EquatableMixin {
         name: json["Product_description"],
         kilocalories: json["ENERCC_kcal"]?.toDouble() ?? 0.0,
         totalSugar: new Nutrition(
-            value: json["SUGAR_g"]?.toDouble() ?? 0.0,
+            value: json["SUGAR_g"]?.toDouble() ?? 0.0 * grams,
             type: NutritionType.sugar),
         totalFat: Nutrition(
             value: json["FAT_g"]?.toDouble() ?? 0.0 * grams,
