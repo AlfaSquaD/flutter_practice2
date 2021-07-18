@@ -21,6 +21,8 @@ class NutritionTypeAdapter extends TypeAdapter<NutritionType> {
         return NutritionType.sugar;
       case 3:
         return NutritionType.water;
+      case 4:
+        return NutritionType.calories;
       default:
         return NutritionType.protein;
     }
@@ -40,6 +42,9 @@ class NutritionTypeAdapter extends TypeAdapter<NutritionType> {
         break;
       case NutritionType.water:
         writer.writeByte(3);
+        break;
+      case NutritionType.calories:
+        writer.writeByte(4);
         break;
     }
   }

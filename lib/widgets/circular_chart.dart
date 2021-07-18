@@ -23,7 +23,7 @@ class CircularChart<T> extends StatelessWidget {
     return Container(
       height: 300,
       child: SfCircularChart(
-          title: ChartTitle(text: chartTitle),
+          title: ChartTitle(text: chartTitle, alignment: ChartAlignment.center),
           legend: Legend(
               isVisible: true,
               position: LegendPosition.bottom,
@@ -31,6 +31,7 @@ class CircularChart<T> extends StatelessWidget {
               offset: Offset(0, 10)),
           series: <PieSeries<T, String>>[
             PieSeries<T, String>(
+                radius: "75",
                 animationDuration: 750,
                 enableSmartLabels: true,
                 explode: false,

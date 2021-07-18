@@ -88,7 +88,7 @@ class DailyPlanAdapter extends TypeAdapter<DailyPlan> {
       ..totalSugar = fields[3] as Nutrition
       ..totalProtein = fields[4] as Nutrition
       ..totalWaterOfGlass = fields[5] as Nutrition
-      ..totalKcal = fields[6] as double;
+      ..totalCalories = fields[6] as Nutrition;
   }
 
   @override
@@ -108,7 +108,7 @@ class DailyPlanAdapter extends TypeAdapter<DailyPlan> {
       ..writeByte(5)
       ..write(obj.totalWaterOfGlass)
       ..writeByte(6)
-      ..write(obj.totalKcal);
+      ..write(obj.totalCalories);
   }
 
   @override

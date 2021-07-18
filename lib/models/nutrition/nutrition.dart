@@ -13,7 +13,9 @@ enum NutritionType {
   @HiveField(2)
   sugar,
   @HiveField(3)
-  water
+  water,
+  @HiveField(4)
+  calories
 }
 
 @HiveType(typeId: NutritionId)
@@ -27,13 +29,20 @@ class Nutrition extends HiveObject with EquatableMixin {
   @override
   List<Object?> get props => [type, value];
 
-  double operator +(other) => this.value + other.value;
+  double operator +(other) =>
+      other is Nutrition ? this.value + other.value : this.value + other;
 
-  double operator -(other) => this.value - other.value;
+  double operator -(other) =>
+      other is Nutrition ? this.value - other.value : this.value - other;
 
-  double operator *(other) => this.value * other.value;
+  double operator *(other) =>
+      other is Nutrition ? this.value * other.value : this.value * other;
 
-  double operator /(other) => this.value / other.value;
+  double operator /(other) =>
+      other is Nutrition ? this.value / other.value : this.value / other;
+
+  @override
+  String toString() => value.toStringAsFixed(1);
 }
 
 String nutritionTypeToString(NutritionType type) {
@@ -46,5 +55,7 @@ String nutritionTypeToString(NutritionType type) {
       return 'Şeker';
     case NutritionType.water:
       return 'Su';
+    case NutritionType.calories:
+      return 'Kalori';
   }
 }

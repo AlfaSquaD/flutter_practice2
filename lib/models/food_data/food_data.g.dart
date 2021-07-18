@@ -59,19 +59,31 @@ class FoodDataAdapter extends TypeAdapter<FoodData> {
       food: fields[0] as Food,
       amount: fields[1] as double,
       mealMeasure: fields[2] as MealMeasure,
+      totalSugar: fields[3] as double,
+      totalFat: fields[4] as double,
+      totalProtein: fields[5] as double,
+      totalCalories: fields[6] as double,
     );
   }
 
   @override
   void write(BinaryWriter writer, FoodData obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.food)
       ..writeByte(1)
       ..write(obj.amount)
       ..writeByte(2)
-      ..write(obj.mealMeasure);
+      ..write(obj.mealMeasure)
+      ..writeByte(3)
+      ..write(obj.totalSugar)
+      ..writeByte(4)
+      ..write(obj.totalFat)
+      ..writeByte(5)
+      ..write(obj.totalProtein)
+      ..writeByte(6)
+      ..write(obj.calories);
   }
 
   @override

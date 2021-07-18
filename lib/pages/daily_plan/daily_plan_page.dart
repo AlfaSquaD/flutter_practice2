@@ -45,7 +45,7 @@ class DailyPlanPage extends StatelessWidget {
                                 for (int i = 0; i < 5; i++)
                                   CustomListItem(
                                     subtitle:
-                                        "${state.plan.meals[i].totalKcal} Kcal",
+                                        "${state.plan.meals[i].totalCalories} Kcal",
                                     trailing: Icon(
                                         Icons.keyboard_arrow_right_outlined),
                                     constraints: BoxConstraints(maxHeight: 50),

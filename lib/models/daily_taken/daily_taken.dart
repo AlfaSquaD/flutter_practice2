@@ -18,7 +18,8 @@ class DailyTaken extends HiveObject {
   @HiveField(4)
   Nutrition takenWater = new Nutrition(type: NutritionType.water, value: 0);
   @HiveField(5)
-  double takenKcal = 0;
+  Nutrition takenCalories =
+      new Nutrition(type: NutritionType.calories, value: 0);
   @HiveField(6)
   List<FoodData> foodDatas = [];
 
@@ -32,7 +33,7 @@ class DailyTaken extends HiveObject {
         foodData.food.totalProtein * (foodData.amount / foodData.food.grams);
     takenSugar.value = takenSugar +
         foodData.food.totalSugar * (foodData.amount / foodData.food.grams);
-    takenKcal = takenKcal +
+    takenCalories.value = takenCalories +
         foodData.food.kilocalories * (foodData.amount / foodData.food.grams);
   }
 
@@ -44,7 +45,7 @@ class DailyTaken extends HiveObject {
         foodData.food.totalProtein * (foodData.amount / foodData.food.grams);
     takenSugar.value = takenSugar -
         foodData.food.totalSugar * (foodData.amount / foodData.food.grams);
-    takenKcal = takenKcal -
+    takenCalories.value = takenCalories -
         foodData.food.kilocalories * (foodData.amount / foodData.food.grams);
   }
 }

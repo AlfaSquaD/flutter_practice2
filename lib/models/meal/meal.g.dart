@@ -74,7 +74,7 @@ class MealAdapter extends TypeAdapter<Meal> {
       fields[0] as MealType,
     )
       ..foods = (fields[1] as List).cast<FoodData>()
-      ..totalKcal = fields[2] as double
+      ..totalCalories = fields[2] as Nutrition
       ..totalFat = fields[3] as Nutrition
       ..totalSugar = fields[4] as Nutrition
       ..totalProtein = fields[5] as Nutrition;
@@ -89,7 +89,7 @@ class MealAdapter extends TypeAdapter<Meal> {
       ..writeByte(1)
       ..write(obj.foods)
       ..writeByte(2)
-      ..write(obj.totalKcal)
+      ..write(obj.totalCalories)
       ..writeByte(3)
       ..write(obj.totalFat)
       ..writeByte(4)

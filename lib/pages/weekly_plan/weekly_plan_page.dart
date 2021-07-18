@@ -38,7 +38,7 @@ class WeeklyPlanPage extends StatelessWidget {
                           constraints: BoxConstraints(maxHeight: 50),
                           title: dayOfWeekToString(DayOfWeek.values[i]),
                           subtitle:
-                              "${BlocProvider.of<WeeklyPlanBloc>(context).dailyPlans[i].totalKcal} Kcal",
+                              "${BlocProvider.of<WeeklyPlanBloc>(context).dailyPlans[i].totalCalories} Kcal",
                           trailing: Icon(Icons.keyboard_arrow_right_outlined),
                           onTap: () async {
                             await Navigator.of(context).push(getPageRoute(

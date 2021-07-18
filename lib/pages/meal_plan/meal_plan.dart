@@ -145,7 +145,7 @@ class AnimatedListTile extends StatelessWidget {
         child: CustomListItem(
           constraints: BoxConstraints(maxHeight: 60),
           title: foodData.food.name,
-          subtitle: "${foodData.food.kilocalories.toString()} Kilokalori",
+          subtitle: "${foodData.calories.toString()} Kilokalori",
           trailing: IconButton(
               onPressed: () {
                 BlocProvider.of<MealBloc>(context)
@@ -185,7 +185,7 @@ class MealDetailPage extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text("${meal.totalKcal.toString()} Kilokalori",
+              child: Text("${meal.totalCalories} Kilokalori",
                   style: Theme.of(context).primaryTextTheme.caption,
                   textScaleFactor: 1.5),
             )

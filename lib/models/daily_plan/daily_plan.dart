@@ -59,18 +59,19 @@ class DailyPlan extends HiveObject {
   Nutrition totalWaterOfGlass =
       new Nutrition(type: NutritionType.water, value: 0);
   @HiveField(6)
-  double totalKcal = 0;
+  Nutrition totalCalories =
+      new Nutrition(type: NutritionType.calories, value: 0);
 
   void updateTotals() {
     totalFat.value = 0;
     totalSugar.value = 0;
     totalProtein.value = 0;
-    totalKcal = 0;
+    totalCalories.value = 0;
     for (Meal meal in meals) {
       totalFat.value += meal.totalFat.value;
       totalSugar.value += meal.totalSugar.value;
       totalProtein.value += meal.totalProtein.value;
-      totalKcal += meal.totalKcal;
+      totalCalories.value += meal.totalCalories.value;
     }
   }
 

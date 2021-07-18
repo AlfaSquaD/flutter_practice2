@@ -42,7 +42,8 @@ class Meal extends HiveObject with EquatableMixin {
   @HiveField(1)
   List<FoodData> foods = [];
   @HiveField(2)
-  double totalKcal = 0;
+  Nutrition totalCalories =
+      new Nutrition(type: NutritionType.calories, value: 0);
   @HiveField(3)
   Nutrition totalFat = new Nutrition(type: NutritionType.fat, value: 0);
   @HiveField(4)
@@ -53,26 +54,18 @@ class Meal extends HiveObject with EquatableMixin {
 
   void addFood(FoodData foodData) {
     foods.add(foodData);
-    totalKcal +=
-        foodData.food.kilocalories * (foodData.amount / foodData.food.grams);
-    totalFat.value = totalFat +
-        foodData.food.totalFat * (foodData.amount / foodData.food.grams);
-    totalSugar.value = totalSugar +
-        foodData.food.totalSugar * (foodData.amount / foodData.food.grams);
-    totalProtein.value = totalProtein +
-        foodData.food.totalProtein * (foodData.amount / foodData.food.grams);
+    totalFat.value = totalFat + foodData.totalFat;
+    totalSugar.value = totalSugar + foodData.totalSugar;
+    totalProtein.value = totalProtein + foodData.totalProtein;
+    totalCalories.value = totalCalories + foodData.calories;
   }
 
   FoodData removeFood(int index) {
     FoodData foodData = foods.removeAt(index);
-    totalKcal -=
-        foodData.food.kilocalories * (foodData.amount / foodData.food.grams);
-    totalFat.value = totalFat -
-        foodData.food.totalFat * (foodData.amount / foodData.food.grams);
-    totalSugar.value = totalSugar -
-        foodData.food.totalSugar * (foodData.amount / foodData.food.grams);
-    totalProtein.value = totalProtein -
-        foodData.food.totalProtein * (foodData.amount / foodData.food.grams);
+    totalFat.value = totalFat - foodData.totalFat;
+    totalSugar.value = totalSugar - foodData.totalSugar;
+    totalProtein.value = totalProtein - foodData.totalProtein;
+    totalCalories.value = totalCalories - foodData.calories;
     return foodData;
   }
 

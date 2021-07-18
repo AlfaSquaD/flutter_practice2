@@ -23,7 +23,7 @@ class DailyTakenAdapter extends TypeAdapter<DailyTaken> {
       ..takenProtein = fields[2] as Nutrition
       ..takenSugar = fields[3] as Nutrition
       ..takenWater = fields[4] as Nutrition
-      ..takenKcal = fields[5] as double
+      ..takenCalories = fields[5] as Nutrition
       ..foodDatas = (fields[6] as List).cast<FoodData>();
   }
 
@@ -42,7 +42,7 @@ class DailyTakenAdapter extends TypeAdapter<DailyTaken> {
       ..writeByte(4)
       ..write(obj.takenWater)
       ..writeByte(5)
-      ..write(obj.takenKcal)
+      ..write(obj.takenCalories)
       ..writeByte(6)
       ..write(obj.foodDatas);
   }

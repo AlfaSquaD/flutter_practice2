@@ -200,16 +200,32 @@ class _AddFoodWidgetState extends State<AddFoodWidget> {
             child: Text("Ekle",
                 style: const TextStyle(fontSize: 20, color: Colors.white)),
             onPressed: () {
-              double amount = double.parse(_mealAmountController.text);
+              double? amount = double.tryParse(_mealAmountController.text);
               if (amount == null || amount <= 0)
                 _validateMealAmount = true;
               else
                 Navigator.pop(
                     context,
                     FoodData(
-                        food: widget.food,
-                        amount: double.parse(_mealAmountController.text),
-                        mealMeasure: selected));
+                      food: widget.food,
+                      amount: amount,
+                      mealMeasure: selected,
+                      totalFat: selected == MealMeasure.portion
+                          ? widget.food.totalFat * amount
+                          : widget.food.totalFat * (amount / widget.food.grams),
+                      totalProtein: selected == MealMeasure.portion
+                          ? widget.food.totalProtein * amount
+                          : widget.food.totalProtein *
+                              (amount / widget.food.grams),
+                      totalSugar: selected == MealMeasure.portion
+                          ? widget.food.totalSugar * amount
+                          : widget.food.totalSugar *
+                              (amount / widget.food.grams),
+                      totalCalories: selected == MealMeasure.portion
+                          ? widget.food.kilocalories * amount
+                          : widget.food.kilocalories *
+                              (amount / widget.food.grams),
+                    ));
             },
           ),
         )
