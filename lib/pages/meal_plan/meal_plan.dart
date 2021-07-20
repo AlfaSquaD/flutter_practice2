@@ -12,6 +12,7 @@ import 'package:flutter_practice2/widgets/circular_chart.dart';
 import 'package:flutter_practice2/widgets/list_item.dart';
 import 'package:flutter_practice2/widgets/page_template.dart';
 import 'package:flutter_practice2/widgets/top_bar.dart';
+import 'package:flutter_practice2/widgets/topbar_button.dart';
 
 class MealPage extends StatelessWidget {
   MealPage({Key? key}) : super(key: key);
@@ -54,30 +55,20 @@ class MealPage extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                height: 50,
-                width: 200,
-                child: TextButton(
-                    onPressed: () {
-                      Meal meal = BlocProvider.of<MealBloc>(context).meal;
-                      Navigator.of(context).push(
-                          getPageRoute(context, MealDetailPage(meal: meal)));
-                    },
-                    child: Text(
-                      "Detaylar",
-                      style: Theme.of(context).primaryTextTheme.caption,
-                      textScaleFactor: 1.5,
-                    ),
-                    style: Theme.of(context).textButtonTheme.style!.copyWith(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            Colors.green.shade500),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30))))),
+              padding: const EdgeInsets.all(8),
+              child: TopBarButton(
+                title: Text(
+                  "Detaylar",
+                  style: Theme.of(context).primaryTextTheme.caption,
+                  textScaleFactor: 1.5,
+                ),
+                onTap: () {
+                  Meal meal = BlocProvider.of<MealBloc>(context).meal;
+                  Navigator.of(context)
+                      .push(getPageRoute(context, MealDetailPage(meal: meal)));
+                },
               ),
-            )
+            ),
           ],
         ),
         body: BlocListener<MealBloc, MealState>(

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_practice2/blocs/daily_taken/dailytaken_bloc.dart';
 import 'package:flutter_practice2/blocs/weekly_plan/weekly_plan_bloc.dart';
+import 'package:flutter_practice2/models/daily_plan/daily_plan.dart';
+import 'package:flutter_practice2/models/daily_taken/daily_taken.dart';
 import 'package:flutter_practice2/models/user_data/user_data.dart';
+import 'package:flutter_practice2/pages/daily_taken/daily_taken_page.dart';
 import 'package:flutter_practice2/pages/weekly_plan/weekly_plan_page.dart';
 import 'package:flutter_practice2/repo/user_repo.dart';
 import 'package:flutter_practice2/utils/page_route.dart';
@@ -60,7 +64,25 @@ class UserMainPageTest extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(getPageRoute(
+                        context,
+                        BlocProvider<DailytakenBloc>(
+                          create: (context) {
+                            UserData data =
+                                RepositoryProvider.of<UserRepositoryTest>(
+                                        context)
+                                    .getUserData("test");
+                            return DailytakenBloc(DailyTaken("a"));
+                          },
+                          child: DailyTakenPage(
+                            dayOfWeek: DayOfWeek.friday,
+                            data: RepositoryProvider.of<UserRepositoryTest>(
+                                    context)
+                                .getUserData("a"),
+                          ),
+                        )));
+                  },
                   child: Text(
                     "Takip et",
                     style: Theme.of(context).primaryTextTheme.caption,
